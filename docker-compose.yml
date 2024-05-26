@@ -1,0 +1,36 @@
+version: '3.8'  # 사용할 docker-compose 파일 버전
+
+services:
+  mysql: # MySQL 데이터베이스 서비스 이름
+    image: mysql:8.0  # 사용할 MySQL 이미지
+    environment:
+      MYSQL_ROOT_PASSWORD: root  # root 사용자의 비밀번호 설정
+      MYSQL_DATABASE: guestbookproject  # 생성할 데이터베이스 이름
+    ports:
+      - "3306:3306"  # 호스트:컨테이너 포트 매핑
+    volumes:
+      - mysql-data:/var/lib/mysql  # 데이터 보존을 위한 볼륨
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+
+  app:  # Spring Boot 애플리케이션 서비스 이름
+    image: "sangjunpark/guestbook_project:v2"  # 사용할 이미지
+    ports:
+      - "8080:8080"  # 호스트:컨테이너 포트 매핑
+    depends_on:
+     mysql:
+      condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/guestbookproject
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+
+volumes:  # 사용할 볼륨 정의
+  mysql-data:  # MySQL 데이터 저장을 위한 볼륨
+
