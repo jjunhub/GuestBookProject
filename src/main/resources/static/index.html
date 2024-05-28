@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Book</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <h2>SPRING BOOT PROJECT 1</h2>
+    <h1>Do-iT! - A Guest Book</h1>
+</header>
+<main>
+    <section class="search-section">
+        <p>Please leave your story in the guest book :)</p>
+        <div class="input-with-btn">
+            <input class="search-bar" type="text" placeholder="      Find someone else's story" id="searchField">
+            <button class="search-btn">←</button>
+        </div>
+    </section>
+    <div class="board">
+        <div id="data-list"></div>
+        <div class="write-board">
+            <input class="input-title" type="text" placeholder="  Write title for your own story" id="titleField">
+            <input class="input-content" type="text" placeholder="  Write an additional explanation here" id="contentField">
+        </div>
+        <div class="upload-btn" id="upload-btn">Upload</div>
+    </div>
+    <div id="modal-dim" class="modal-dim">
+        <div class="modal-dim-container">
+            <section class="container">
+                <header class="header">Welcome to our Website!</header>
+                <section class="content-container">
+                    <p class="timestamp">2024.05.24 00:15</p>
+                    <article class="meeting-details">
+                        <p class="main-message">I wanno go home</p>
+                    </article>
+                </section>
+                <footer class="footer">
+                    <div class="footer-buttons">
+                        <button class="cancel-button" tabindex="0">Cancel</button>
+                        <button class="like-button" tabindex="0">Like it 👍</button>
+                    </div>
+                </footer>
+            </section>
+        </div>
+    </div>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
